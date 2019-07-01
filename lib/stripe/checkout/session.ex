@@ -66,13 +66,21 @@ defmodule Stripe.Session do
   @type t :: %__MODULE__{
           :id => Stripe.id(),
           :object => String.t(),
-          :livemode => boolean()
+          :livemode => boolean(),
+          :subscription => Stripe.id(),
+          :customer => Stripe.id(),
+          :cancel_url => String.t(),
+          :success_url => String.t()
         }
 
   defstruct [
     :id,
     :object,
-    :livemode
+    :livemode,
+    :subscription,
+    :customer,
+    :cancel_url,
+    :success_url
   ]
 
   @plural_endpoint "checkout/sessions"
