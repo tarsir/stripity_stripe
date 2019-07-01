@@ -11,4 +11,9 @@ defmodule Stripe.SessionTest do
     assert {:ok, %Stripe.Session{}} = Stripe.Session.create(params)
     assert_stripe_requested(:post, "/v1/checkout/sessions")
   end
+
+  test "is retrievable" do
+    assert {:ok, %Stripe.Session{}} = Stripe.Session.retrieve("cs_123")
+    assert_stripe_requested(:get, "/v1/checkout/sessions/cs_123")
+  end
 end

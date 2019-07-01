@@ -85,4 +85,12 @@ defmodule Stripe.Session do
     |> put_method(:post)
     |> make_request()
   end
+
+  @spec retrieve(Stripe.id() | t, Stripe.options()) :: {:ok, t} | {:error, Stripe.Error.t()}
+  def retrieve(id, opts \\ []) do
+    new_request(opts)
+    |> put_endpoint(@plural_endpoint <> "/#{get_id!(id)}")
+    |> put_method(:get)
+    |> make_request()
+  end
 end
